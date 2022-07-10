@@ -238,7 +238,7 @@ impl TextStyle {
     ///     fancy_font_style
     /// )
     /// ```
-    pub fn clone_with_font(&self, font: Handle<Font>) -> Self {
+    pub fn clone_with_font(&self, font: &Handle<Font>) -> Self {
         Self {
             font: (*font).clone(),
             font_size: self.font_size,
@@ -318,7 +318,7 @@ mod test {
     fn clone_style_with_font() {
         let base_style = TextStyle::default();
         let new_handle: Handle<Font> = Handle::weak(HandleId::random::<Font>());
-        let new_style = base_style.clone_with_font(new_handle);
+        let new_style = base_style.clone_with_font(&new_handle);
         assert_ne!(
             base_style,
             new_style
